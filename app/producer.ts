@@ -1,23 +1,7 @@
-import { Kafka } from 'kafkajs';
+import { kafkaProperties } from './kafkaProperties';
 
 // Kafka Configuration Settings.
-const kafka = new Kafka({
-  // Kafka Client id
-  clientId: 'sample',
-  // List of brokers available and can be used in the function
-  brokers: ['localhost:9092'],
-  // Timeout in ms untill a successful connection is available
-  connectionTimeout: 3000,
-  // Timeout in ms untill a successful request it available.
-  requestTimeout: 25000,
-  // Retry Configuraiton. Retries grows exponentially
-  retry: {
-    // Initial retry time in ms.
-    initialRetryTime: 100,
-    // Number of retries.
-    retries: 3
-  }
-})
+const kafka = kafkaProperties();
 
 // Kafka Producer instance.
 const producer = kafka.producer()
@@ -30,15 +14,15 @@ producer.send({
   topic: 'test-topic',
   // Message to be produced in the topic.
   messages: [
-    { 
-      key:"DATA1", 
+    {
+      key: "DATA1",
       value: 'Hai',
       headers: {
         "replication-id": "1"
       }
     },
     {
-      key:"DATA2",
+      key: "DATA2",
       value: 'Hello World'
     },
   ],
