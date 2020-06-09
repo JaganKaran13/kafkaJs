@@ -1,10 +1,19 @@
 import * as Ajv from 'ajv';
 
+// User interface.
+interface User {
+    name: string,
+    age: number,
+    fav: string[],
+    dob: string
+}
+
+
 // Ajv instance
-var ajv = new Ajv({allErrors: true});
+let ajv = new Ajv({ allErrors: true });
 
 // Sample Schema for testing ajv validation.
-var schema  = {
+let schema = {
     "properties": {
         "name": {
             "type": "string",
@@ -17,7 +26,7 @@ var schema  = {
         },
         "fav": {
             "type": "array",
-            "items": {"type": "string"}
+            "items": { "type": "string" }
         },
         "dob": {
             "type": "string",
@@ -27,22 +36,27 @@ var schema  = {
 };
 
 // Valid Data to check the schema
-var validData  = {
+let validData = {
     "name": "Jagan",
     "age": 22,
     "fav": ["As"],
     "dob": "2020-02-20"
 }
 
-// validation
-var valid = ajv.validate(schema, validData);
+// Calls the function to validate the schema.
+validateSchema(validData);
 
-// Results printed based on the condition.
-if (!valid) {
-    console.log(valid)
-    console.log(ajv.errorsText());
-} else {
-    console.log("valid schema data");
+function validateSchema(userDetails: User): void {
+    // Schema validation.
+    let valid = ajv.validate(schema, userDetails);
+
+    // Results printed based on the condition.
+    if (!valid) {
+        console.log(valid)
+        console.log(ajv.errorsText());
+    } else {
+        console.log("valid schema data");
+    }
 }
 
 /**

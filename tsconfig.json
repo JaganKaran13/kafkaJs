@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonJs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "outDir": "compile/",
+    },
+    "files": [
+        "app/producer.ts",
+        "app/consumer.ts",
+        "app/ajv-validation.ts",
+        "app/kafkaProperties.ts"
+    ]
+}
