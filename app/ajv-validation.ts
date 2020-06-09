@@ -18,6 +18,10 @@ var schema  = {
         "fav": {
             "type": "array",
             "items": {"type": "string"}
+        },
+        "dob": {
+            "type": "string",
+            "format": "date"
         }
     }
 };
@@ -26,7 +30,8 @@ var schema  = {
 var validData  = {
     "name": "Jagan",
     "age": 22,
-    "fav": ["As"]
+    "fav": ["As"],
+    "dob": "2020-02-20"
 }
 
 // validation
